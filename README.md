@@ -26,7 +26,7 @@ The background color of each answer choice is conditionally styled based on whet
 
 Follow these steps to set up and run the **My Quiz Page** application on your local machine:
 
-1. Clone this repository: `git clone https://github.com/yerga-star/my-quiz-page.git`
+1. Clone this repository: `git clone https://github.com/yerga-star/react-quiz-app.git`
 2. Navigate to the project directory: `cd my-quiz-page`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
