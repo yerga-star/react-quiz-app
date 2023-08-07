@@ -29,8 +29,8 @@ Follow these steps to set up and run the **My Quiz Page** application on your lo
 1. Clone this repository: `git clone https://github.com/yerga-star/react-quiz-app.git`
 2. Navigate to the project directory: `cd react-quiz-app`
 3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-5. Open your web browser and go to: `http://localhost:3000`
+4. Start the development server: `npm run dev`
+5. Open your web browser and go to: `http://localhost:5174/`
 
 ## Usage
 
