@@ -4,7 +4,7 @@ import he from "he";
 import Question from "./Question";
 import Result from "./Result";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faArrowLeft, faArrowRight, faClock} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faArrowLeft, faArrowRight, faClock } from "@fortawesome/free-solid-svg-icons";
 
 export default function Quiz(props) {
   const [test, setTest] = useState([]);
@@ -16,6 +16,7 @@ export default function Quiz(props) {
   const [reload, setReload] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isOffline, setIsOffline] = useState(false);
+  const [checkedAnswers, setCheckedAnswers] = useState(false);
 
   const questionsPerPage = 5;
   const totalPages = 4;
@@ -23,7 +24,7 @@ export default function Quiz(props) {
   const selectedDifficulty = props.difficulty;
 
   useEffect(() => {
-    console.log(selectedCategory,selectedDifficulty)
+    console.log(selectedCategory, selectedDifficulty)
     if (!window.navigator.onLine) {
       setIsOffline(true);
     } else {
@@ -160,8 +161,10 @@ export default function Quiz(props) {
         }
         return acc;
       }, 0);
+
       setResult(result);
       setQuizCompleted(true);
+      setCheckedAnswers(true); // Toggle the checkedAnswers state
     }
     setRemainingTime('')
 
@@ -172,7 +175,7 @@ export default function Quiz(props) {
     setCurrentPage(1);
     setQuizCompleted(false);
     setReload(!reload);
-    
+    setCheckedAnswers(false);
   }
 
   const goToPrevPage = () => {
@@ -201,8 +204,10 @@ export default function Quiz(props) {
           quizId={quiz.id}
           question={quiz.question}
           allAnswer={quiz.allAnswer}
+          correctAnswerId={quiz.correct_answer.id}
           onSelected={userAnswer}
           quizCompleted={quizCompleted}
+          checkedAnswers={checkedAnswers}
         />
       ))}
       {/* Next and Prev buttons */}
@@ -234,7 +239,7 @@ export default function Quiz(props) {
   const resultComponent = quizCompleted ? (<div className="result-container">
     <Result result={result} handleClick={newQuiz} />
   </div>) : (<div className="timer-container">
-  <p><FontAwesomeIcon icon={faClock} />Time Remaining</p><p> {minutes}:{seconds < 10 ? "0" : ""}{seconds}</p>
+    <p><FontAwesomeIcon icon={faClock} />Time Remaining</p><p> {minutes}:{seconds < 10 ? "0" : ""}{seconds}</p>
   </div>);
 
   return (
