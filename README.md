@@ -1,4 +1,4 @@
-# react-quiz-app
+
 # react-quiz-app
 ## Question Component
 
